@@ -24,9 +24,9 @@ public class UserEntity {
     @Column(name = "celular", columnDefinition = "INT")
     private Integer celular;
 
-    @Column(name = "direccion", columnDefinition = "VARCHAR(100)")
-    public Direccion direccion;
-
+    @OneToOne
+    @JoinColumn(name = "direccion")
+    private Direccion direccion;
 }
 
 
