@@ -38,11 +38,9 @@ public class UserServicies {
     public MessageUserAddDTO add(UserAddDTO userAddDTO) {
         Boolean nombreExist = userRepository.existsByNombre(userAddDTO.getNombre());
         Boolean celularExist = userRepository.existsByCelular(userAddDTO.getCelular());
-        Boolean direccionExist = userRepository.existsByDireccion(userAddDTO);
 
         if(nombreExist) throw new UserBadRequestException("Ya existe un contacto con ese nombre");
         if(celularExist) throw new UserBadRequestException("Ya existe un contacto con ese celular");
-        if(!direccionExist) throw new UserBadRequestException("Agregue una direccion");
 
         MessageUserAddDTO messageUserAddDTO = new MessageUserAddDTO();
         UserEntity user = userRepository.save(userMapper.userAddDTOToUserEntity(userAddDTO));
