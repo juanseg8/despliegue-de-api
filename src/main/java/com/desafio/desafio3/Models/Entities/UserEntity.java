@@ -24,5 +24,8 @@ public class UserEntity {
     @Column(name = "celular", columnDefinition = "INT")
     private Integer celular;
 
+    @Column(name = "direccion", columnDefinition = "VARCHAR(100)")
+    private Object direccion;
+
 }
 

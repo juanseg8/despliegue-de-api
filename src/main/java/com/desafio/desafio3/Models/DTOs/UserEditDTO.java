@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class UserEditDTO {
     String nombre;
     Integer celular;
+    Object direccion;
 }

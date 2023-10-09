@@ -11,4 +11,5 @@ public class UserReadDTO {
     Integer id;
     String nombre;
     Integer celular;
+    Object direccion;
 }

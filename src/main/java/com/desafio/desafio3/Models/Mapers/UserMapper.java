@@ -12,6 +12,7 @@ public class UserMapper {
         userReadDTO.setId(userEntity.getId());
         userReadDTO.setNombre(userEntity.getNombre());
         userReadDTO.setCelular(userEntity.getCelular());
+        userReadDTO.setDireccion(userEntity.getDireccion());
         return userReadDTO;
     }
 
@@ -19,6 +20,7 @@ public class UserMapper {
         UserEntity userEntity = new UserEntity();
         userEntity.setNombre(userAddDTO.getNombre());
         userEntity.setCelular(userAddDTO.getCelular());
+        userEntity.setDireccion(userAddDTO.getDireccion());
         return userEntity;
     }
 }
