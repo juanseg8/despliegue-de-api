@@ -25,7 +25,8 @@ public class UserEntity {
     private Integer celular;
 
     @Column(name = "direccion", columnDefinition = "VARCHAR(100)")
-    private Object direccion;
+    public Direccion direccion;
 
 }
+
 

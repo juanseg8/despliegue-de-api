@@ -20,7 +20,6 @@ public class UserMapper {
         UserEntity userEntity = new UserEntity();
         userEntity.setNombre(userAddDTO.getNombre());
         userEntity.setCelular(userAddDTO.getCelular());
-        userEntity.setDireccion(userAddDTO.getDireccion());
         return userEntity;
     }
 }
