@@ -14,7 +14,9 @@ import lombok.NoArgsConstructor;
 public class Direccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "calle", columnDefinition = "VARCHAR(100)")
     private String calle;
+    @Column(name = "numero", columnDefinition = "VARCHAR(100)")
     private String numero;
 
 }
