@@ -25,7 +25,7 @@ public class UserEntity {
     private Integer celular;
 
     @OneToOne
-    @JoinColumn(name = "direccion")
+    @JoinColumn(name = "direccion_id")
     private Direccion direccion;
 }
 
