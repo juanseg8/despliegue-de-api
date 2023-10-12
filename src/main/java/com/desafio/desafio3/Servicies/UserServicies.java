@@ -6,8 +6,10 @@ import com.desafio.desafio3.Models.DTOs.MessageUserAddDTO;
 import com.desafio.desafio3.Models.DTOs.UserEditDTO;
 import com.desafio.desafio3.Models.DTOs.UserAddDTO;
 import com.desafio.desafio3.Models.DTOs.UserReadDTO;
+import com.desafio.desafio3.Models.Entities.AdressEntity;
 import com.desafio.desafio3.Models.Entities.UserEntity;
 import com.desafio.desafio3.Models.Mapers.UserMapper;
+import com.desafio.desafio3.Models.Repositories.AdressRepository;
 import com.desafio.desafio3.Models.Repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +21,14 @@ import java.util.stream.Collectors;
 public class UserServicies {
 
     private final UserRepository userRepository;
+    private final AdressRepository adressRepository;
     private final UserMapper userMapper;
 
-    public UserServicies(UserRepository userRepository, UserMapper userMapper) {
+
+
+    public UserServicies(UserRepository userRepository, AdressRepository adressRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.adressRepository = adressRepository;
         this.userMapper = userMapper;
     }
 
@@ -43,7 +49,13 @@ public class UserServicies {
         if(celularExist) throw new UserBadRequestException("Ya existe un contacto con ese celular");
 
         MessageUserAddDTO messageUserAddDTO = new MessageUserAddDTO();
-        UserEntity user = userRepository.save(userMapper.userAddDTOToUserEntity(userAddDTO));
+
+        AdressEntity adress = new AdressEntity();
+        adress.setCalle(userAddDTO.getCalle());
+        adress.setNumero(userAddDTO.getNumero());
+        adress = adressRepository.save(adress);
+
+        UserEntity user = userRepository.save(userMapper.userAddDTOToUserEntity(userAddDTO,adress));
         UserReadDTO userDTO = userMapper.userEntityToUserReadDTO(user);
         messageUserAddDTO.setUser(userDTO);
         messageUserAddDTO.setMessage("Se añadio exitosamente");
@@ -76,9 +88,14 @@ public class UserServicies {
             UserEntity editUser = userRepository.findById(id)
                     .orElseThrow(() -> new UserNotFoundException("No se encontro el contacto con ese id"));
 
+            AdressEntity editAdress = adressRepository.findById(id)
+                    .orElseThrow(() -> new UserNotFoundException("No se encontro una direccion con ese id"));
+
+
             if(Objects.nonNull(user.getNombre())) editUser.setNombre(user.getNombre());
             if(Objects.nonNull(user.getCelular())) editUser.setCelular(user.getCelular());
-            if(Objects.nonNull(user.getDireccion())) editUser.setDireccion(user.getDireccion());
+            if(Objects.nonNull(user.getCalle())) editAdress.setCalle(user.getCalle());
+            if(Objects.nonNull(user.getNumero())) editAdress.setNumero(user.getNumero());
 
             UserEntity newUser = userRepository.save(editUser);
 

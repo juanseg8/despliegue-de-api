@@ -1,6 +1,5 @@
 package com.desafio.desafio3.Models.DTOs;
 
-import com.desafio.desafio3.Models.Entities.Direccion;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +11,5 @@ public class UserReadDTO {
     Integer id;
     String nombre;
     Integer celular;
-    Direccion direccion;
+    AdressReadDTO adressId;
 }

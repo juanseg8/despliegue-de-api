@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "contactos")
+@Table(name = "users")
 
 public class UserEntity {
 
@@ -24,9 +24,8 @@ public class UserEntity {
     @Column(name = "celular", columnDefinition = "INT")
     private Integer celular;
 
-    @OneToOne
-    @JoinColumn(name = "direccion")
-    private Direccion direccion;
-}
+    @Column(name = "direccion")
+    private Integer adressId;
 
+}
 

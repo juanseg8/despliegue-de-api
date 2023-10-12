@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserAddDTO {
-    String nombre;
-    Integer celular;
-    String calle;
-    String numero;
+public class AdressReadDTO {
+    private String calle;
+    private String numero;
 }
